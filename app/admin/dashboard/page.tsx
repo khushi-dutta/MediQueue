@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import QueueContent from '@/admin/QueueContent'
-import AnalyticsContent from '@/admin/AnalyticsContent'
-import StaffContent from '@/admin/StaffContent'
-import DepartmentsContent from '@/admin/DepartmentsContent'
-import SettingsContent from '@/admin/SettingsContent'
+import QueueContent from '@/app/components/admin/QueueContent'
+import AnalyticsContent from '@/app/components/admin/AnalyticsContent'
+import StaffContent from '@/app/components/admin/StaffContent'
+import DepartmentsContent from '@/app/components/admin/DepartmentsContent'
+import SettingsContent from '@/app/components/admin/SettingsContent'
 
 // Mock data for the dashboard
 const MOCK_QUEUE_DATA = {

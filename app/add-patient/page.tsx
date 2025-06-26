@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import AddPatientForm from '@/shared/AddPatientForm';
+import AddPatientForm from '@/app/components/shared/AddPatientForm';
 
 export default function AddPatientPage() {
   const router = useRouter();
