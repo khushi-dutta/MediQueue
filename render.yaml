@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: mediqueue
+    env: node
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXTAUTH_SECRET
+        generateValue: true
+      - key: NEXTAUTH_URL
+        fromService:
+          type: web
+          name: mediqueue
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: DATABASE_URL
+        value: file:./prisma/mediqueue.db
+      - key: NEXT_TYPESCRIPT_IGNORE_BUILD_ERRORS
+        value: true
+    disk:
+      name: sqlite-data
+      mountPath: /opt/render/project/src/prisma
+      sizeGB: 1
