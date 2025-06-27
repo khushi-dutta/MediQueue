@@ -47,3 +47,8 @@ app/emergency-test/
 app/email-test/
 app/api/test-appointments/
 public/images/test.txt
+
+# Scripts
+start.sh
+start.bat
+setup-database.sh

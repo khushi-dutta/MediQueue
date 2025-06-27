@@ -197,7 +197,7 @@ export default function EmergencyButton() {
                     </div>
                     <div className="ml-3">
                       <p className="text-sm text-yellow-700">
-                        Please call <a href="tel:+911" className="font-medium underline">911</a> directly if this is a life-threatening emergency.
+                        Please call <a href="tel:+108" className="font-medium underline">108</a> directly if this is a life-threatening emergency.
                       </p>
                     </div>
                   </div>

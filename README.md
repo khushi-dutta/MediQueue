@@ -12,11 +12,6 @@ MediQueue brings the human touch back to healthcare waiting rooms across India. 
 - **Global State Management**: Patient information synchronized across all components using React Context
 - **Indian Localization**: Names, phone numbers, and hospital information tailored for Indian context
 
-## 🖥️ Screenshots
-
-![Patient Dashboard](https://via.placeholder.com/800x400.png?text=Patient+Dashboard)
-![Admin Dashboard](https://via.placeholder.com/800x400.png?text=Admin+Dashboard)
-
 ## 🛠️ Installation and Setup
 
 ### Prerequisites
