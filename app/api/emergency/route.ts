@@ -3,12 +3,17 @@ import prisma from '@/lib/db';
 
 // GET: Fetch all emergency requests (for nurse dashboard)
 export async function GET(request: NextRequest) {
+  console.log('Emergency API - GET request received');
   try {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status');
     
+    console.log('Emergency API - Checking if EmergencyRequest model exists in prisma schema');
+    console.log('Available models in prisma:', Object.keys(prisma));
+    
     // First try using the model directly
     try {
+      console.log('Emergency API - Attempting to use prisma.emergencyRequest');
       const whereCondition = status && status !== 'ALL' 
         ? { status }
         : undefined;
@@ -20,23 +25,27 @@ export async function GET(request: NextRequest) {
         }
       });
       
+      console.log('Emergency API - Successfully fetched data using model:', emergencyRequests.length);
       return NextResponse.json({
         success: true,
         emergencyRequests,
         count: emergencyRequests.length
       });
     } catch (modelError) {
-      console.log('Model-based query failed, trying raw SQL:', modelError);
+      console.log('Emergency API - Model-based query failed:', modelError);
       
       // If that fails, try with raw SQL using quoted identifiers
-      // This handles case-sensitivity issues in PostgreSQL
+      console.log('Emergency API - Trying raw SQL with quoted identifiers');
       const query = status && status !== 'ALL'
         ? `SELECT * FROM "EmergencyRequest" WHERE "status" = $1 ORDER BY "createdAt" DESC`
         : `SELECT * FROM "EmergencyRequest" ORDER BY "createdAt" DESC`;
         
       const params = status && status !== 'ALL' ? [status] : [];
+      
+      console.log('Emergency API - Executing raw SQL query:', query);
       const emergencyRequests = await prisma.$queryRawUnsafe(query, ...params);
       
+      console.log('Emergency API - Raw query result:', emergencyRequests);
       return NextResponse.json({
         success: true,
         emergencyRequests,

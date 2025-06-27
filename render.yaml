@@ -28,6 +28,8 @@ services:
         value: production
       - key: NEXTAUTH_SECRET
         generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
       - key: NEXTAUTH_URL
         fromService:
           type: web
