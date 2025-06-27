@@ -22,51 +22,66 @@ MediQueue brings the human touch back to healthcare waiting rooms across India. 
 ### Prerequisites
 - Node.js 18.x or later
 - npm or Yarn
+- PostgreSQL 13+ (for database)
 
 ### Setup Steps
-1. Clone the repository
+
+1. **Clone the repository**
 ```bash
 git clone https://github.com/yourusername/mediQueue-v2.git
 cd mediQueue-v2
+```
 
-2. Install dependencies
+2. **Install dependencies**
 ```bash
 npm install
 # or
 yarn install
 ```
 
-3. Set up environment variables
+3. **Set up PostgreSQL database**
+   
+   See the detailed [PostgreSQL Setup Guide](./POSTGRESQL_SETUP.md) for complete instructions.
+   
+   Quick setup:
+   - Install PostgreSQL
+   - Create database and user:
+   ```sql
+   CREATE DATABASE mediqueue;
+   CREATE USER mediqueue_user WITH PASSWORD 'password';
+   GRANT ALL PRIVILEGES ON DATABASE mediqueue TO mediqueue_user;
+   ```
+
+4. **Set up environment variables**
 ```bash
 # Copy the example environment file
 cp .env.example .env.local
 
-# Edit .env.local and add your API keys
-# - Get a Gemini API key from Google AI Studio
+# Edit .env.local and add your configuration:
+# - DATABASE_URL: PostgreSQL connection string
+# - Get a Gemini API key from Google AI Studio  
 # - Set up EmailJS account and get service/template IDs
 # - Generate a random string for NEXTAUTH_SECRET (32+ characters)
-# - Add the same value as JWT_SECRET or generate a separate one
 
 # You can generate secure random strings with this command:
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
-```
 
-2. Install dependencies
+5. **Run database migrations**
 ```bash
-npm install
-# or
-yarn install
+npx prisma generate
+npx prisma migrate dev --name init
+# or use: npx prisma db push
 ```
 
-3. Start the development server
+6. **Start the development server**
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+7. **Open [http://localhost:3000](http://localhost:3000) in your browser**
 
 ## 📱 Demo Accounts
 
@@ -105,11 +120,11 @@ yarn dev
 ### Render (Recommended)
 1. Push code to GitHub
 2. Sign up on [Render](https://render.com)
-3. Import your GitHub repository
-4. Configure as a Web Service:
-   - Build command: `npm install && npm run build`
-   - Start command: `npm start`
-   - Environment variables: Add your secret keys (SQLite database is included in the deployment)
+3. Import your GitHub repository using Blueprint (render.yaml)
+4. The deployment will automatically set up:
+   - PostgreSQL database service
+   - Web application service
+   - Environment variables: Add your secret keys (Gemini API, EmailJS)
 
 ### Netlify
 1. Push code to GitHub

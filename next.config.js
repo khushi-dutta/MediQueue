@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-// Import Render SQLite configuration
-require('./lib/render-db-config');
-
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,

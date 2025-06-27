@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -233,5 +233,5 @@ model EmergencyRequest {
   updatedAt       DateTime  @updatedAt
 }
 
-// Note: SQLite doesn't support enums, so we use String fields with validation in the application
+// Note: PostgreSQL supports enums and complex data types for better data validation
 // UrgencyLevel values: "LOW", "NORMAL", "HIGH", "EMERGENCY"
