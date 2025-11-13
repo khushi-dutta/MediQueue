@@ -73,15 +73,16 @@ export default function RootLayout({
               
               <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <p className="text-gray-400 text-sm">
-                  © 2025 MediQueue. Built with ❤️ by{' '}
-                  <a 
+                  © 2025 MediQueue. Built with ❤️
+                  {/* by{' '} */}
+                  {/* <a 
                     href="https://www.linkedin.com/in/khushidutta/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   >
                     Khushi Dutta
-                  </a>
+                  </a> */}
                   .
                 </p>
                 <div className="mt-4 md:mt-0 flex space-x-4">
